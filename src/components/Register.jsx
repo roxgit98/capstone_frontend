@@ -9,7 +9,7 @@ import {
   Modal,
   Row,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -47,7 +47,6 @@ const Register = () => {
 
       if (response.ok) {
         handleShow(true);
-        // navigate("/login");
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || "Errore nella registrazione");
@@ -64,9 +63,9 @@ const Register = () => {
           <Modal.Title>Registrazione effettuata!</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
-          <Button variant="success" onClick={handleClose}>
-            OK!
-          </Button>
+          <Link to="/login">
+            <Button variant="success">Vai alla pagina di accesso</Button>
+          </Link>
         </Modal.Footer>
       </Modal>
       <Container>
