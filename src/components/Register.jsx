@@ -21,7 +21,6 @@ const Register = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

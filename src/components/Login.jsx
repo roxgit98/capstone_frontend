@@ -40,7 +40,6 @@ const Login = () => {
       if (data.accessToken) {
         localStorage.setItem("authToken", data.accessToken);
         localStorage.setItem("userId", data.utenteId);
-        console.log(data.accessToken);
 
         if (data.ruolo === "ADMIN") {
           navigate("/admin");
