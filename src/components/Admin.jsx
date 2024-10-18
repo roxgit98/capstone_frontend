@@ -449,11 +449,11 @@ const Admin = () => {
       <Row>
         {data && data.content && data.content.length > 0 ? (
           data.content.map((videogioco) => (
-            <Col key={videogioco.id} md={6} className="mb-5">
+            <Col key={videogioco.id} sm={6} className="mb-5">
               <Card
                 bg="dark"
                 text="white"
-                style={{ width: "27rem" }}
+                style={{ width: "35rem" }}
                 border="light"
               >
                 <Card.Img

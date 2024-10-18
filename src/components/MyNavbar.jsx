@@ -1,5 +1,6 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import logo from "../assets/logo.svg";
+import { Link } from "react-router-dom";
 
 const MyNavbar = () => {
   return (
@@ -10,13 +11,18 @@ const MyNavbar = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
-          <Nav className="me-auto">
-            <Nav.Link href="/" className="text-white">
+          <Nav>
+            <Link to="/" className="text-white nav-link">
               Home
-            </Nav.Link>
-            <Nav.Link href="#catalogo" className="text-white">
+            </Link>
+            <Link to="/catalogo" className="text-white nav-link">
               Catalogo
-            </Nav.Link>
+            </Link>
+          </Nav>
+          <Nav className="ms-auto">
+            <Link to="/profilo" className="text-white nav-link">
+              Profilo
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

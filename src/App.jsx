@@ -8,6 +8,8 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Admin from "./components/Admin";
 import User from "./components/User";
+import Catalogo from "./components/Catalogo";
+import Profilo from "./components/Profilo";
 
 function App() {
   return (
@@ -20,7 +22,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/user/:utenteId" element={<User />} />
+            <Route path="/catalogo" element={<Catalogo />} />
+            <Route path="/profilo" element={<Profilo />} />
           </Routes>
         </Container>
       </BrowserRouter>

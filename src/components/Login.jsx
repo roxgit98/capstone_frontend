@@ -44,7 +44,7 @@ const Login = () => {
         if (data.ruolo === "ADMIN") {
           navigate("/admin");
         } else {
-          navigate(`/user/${data.utenteId}`);
+          navigate("/profilo");
         }
       } else {
         throw new Error("Problemi col token");
