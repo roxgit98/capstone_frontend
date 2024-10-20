@@ -44,6 +44,7 @@ const Profilo = () => {
               text="white"
               style={{ width: "35rem" }}
               border="light"
+              className="mb-5"
             >
               <Card.Img variant="top" src={data.avatar} className="img-fluid" />
               <Card.Body>
@@ -63,6 +64,46 @@ const Profilo = () => {
                 </ListGroup>
               </Card.Body>
             </Card>
+
+            <h1 className="mb-5 text-white text-center">
+              Collezione di {data.username}
+            </h1>
+            {data.videogioco &&
+              data.videogioco.map((videogioco) => (
+                <Card
+                  bg="dark"
+                  text="white"
+                  style={{ width: "35rem" }}
+                  border="light"
+                  className="mb-5"
+                  key={videogioco.id}
+                >
+                  <Card.Img
+                    variant="top"
+                    src={videogioco.boxArt}
+                    className="img-fluid"
+                  />
+                  <Card.Body>
+                    <Card.Title className="text-center">
+                      {videogioco.titolo}
+                    </Card.Title>
+                    <ListGroup className="list-group-flush">
+                      <ListGroup.Item className="list-group-item-secondary">
+                        Descrizione: {videogioco.descrizione}
+                      </ListGroup.Item>
+                      <ListGroup.Item className="list-group-item-secondary">
+                        Anno di pubblicazione: {videogioco.annoDiPubblicazione}
+                      </ListGroup.Item>
+                      <ListGroup.Item className="list-group-item-secondary">
+                        Piattaforma: {videogioco.piattaforma}
+                      </ListGroup.Item>
+                      <ListGroup.Item className="list-group-item-secondary">
+                        Genere: {videogioco.genere}
+                      </ListGroup.Item>
+                    </ListGroup>
+                  </Card.Body>
+                </Card>
+              ))}
           </Col>
         ) : (
           <Card style={{ width: "18rem" }} bg="dark" text="white">
