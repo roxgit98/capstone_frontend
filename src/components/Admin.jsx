@@ -27,6 +27,7 @@ const Admin = () => {
   const [showPatch, setShowPatch] = useState(false);
   const [showPut, setShowPut] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
+  const [search, setSearch] = useState("");
   const handleClose = () => setShow(false);
   const handleClosePatch = () => setShowPatch(false);
   const handleClosePut = () => setShowPut(false);
@@ -54,7 +55,7 @@ const Admin = () => {
 
   const fetchData = async () => {
     try {
-      const url = "http://localhost:3001/videogiochi";
+      const url = "http://localhost:3001/videogiochi/orderAZ";
       const token = localStorage.getItem("authToken");
       const response = await fetch(url, {
         method: "GET",
@@ -441,77 +442,90 @@ const Admin = () => {
       {/* inizio pagina catalogo */}
 
       <h1 className="text-white text-center my-3">Gestione catalogo</h1>
-      <div className="d-flex justify-content-center gap-3">
+      <div className="d-flex justify-content-center gap-3 mb-4">
         <Button variant="primary" onClick={handleShow} className="mb-3">
           Aggiungi titolo
         </Button>
+        <FloatingLabel controlId="search" label="Cerca titolo...">
+          <Form.Control
+            type="text"
+            placeholder="Cerca titolo..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            size="lg"
+          />
+        </FloatingLabel>
       </div>
       <Row>
-        {data && data.content && data.content.length > 0 ? (
-          data.content.map((videogioco) => (
-            <Col key={videogioco.id} sm={6} className="mb-5">
-              <Card
-                bg="dark"
-                text="white"
-                style={{ width: "35rem" }}
-                border="light"
-              >
-                <Card.Img
-                  variant="top"
-                  src={videogioco.boxArt}
-                  className="img-fluid"
-                />
-                <Card.Body>
-                  <Card.Title className="text-center">
-                    {videogioco.titolo}
-                  </Card.Title>
-                  <ListGroup className="list-group-flush">
-                    <ListGroup.Item className="list-group-item-secondary">
-                      Descrizione: {videogioco.descrizione}
-                    </ListGroup.Item>
-                    <ListGroup.Item className="list-group-item-secondary">
-                      Anno di pubblicazione: {videogioco.annoDiPubblicazione}
-                    </ListGroup.Item>
-                    <ListGroup.Item className="list-group-item-secondary">
-                      Piattaforma: {videogioco.piattaforma}
-                    </ListGroup.Item>
-                    <ListGroup.Item className="list-group-item-secondary">
-                      Genere: {videogioco.genere}
-                    </ListGroup.Item>
-                  </ListGroup>
-                  <div className="d-flex mt-3 gap-3 justify-content-center">
-                    <Button
-                      variant="primary"
-                      onClick={() => {
-                        getId(videogioco.id);
-                        handleShowPatch();
-                      }}
-                    >
-                      Aggiungi box art
-                    </Button>
-                    <Button
-                      variant="warning"
-                      onClick={() => {
-                        getId(videogioco.id);
-                        handleShowPut();
-                      }}
-                    >
-                      Modifica
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => {
-                        getId(videogioco.id);
-                        handleShowDelete();
-                      }}
-                    >
-                      Elimina titolo
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))
+        {data && data.length > 0 ? (
+          data
+            .filter((videogioco) =>
+              videogioco.titolo.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((videogioco) => (
+              <Col key={videogioco.id} sm={6} className="mb-5">
+                <Card
+                  bg="dark"
+                  text="white"
+                  style={{ width: "35rem" }}
+                  border="light"
+                >
+                  <Card.Img
+                    variant="top"
+                    src={videogioco.boxArt}
+                    className="img-fluid"
+                  />
+                  <Card.Body>
+                    <Card.Title className="text-center">
+                      {videogioco.titolo}
+                    </Card.Title>
+                    <ListGroup className="list-group-flush">
+                      <ListGroup.Item className="list-group-item-secondary">
+                        Descrizione: {videogioco.descrizione}
+                      </ListGroup.Item>
+                      <ListGroup.Item className="list-group-item-secondary">
+                        Anno di pubblicazione: {videogioco.annoDiPubblicazione}
+                      </ListGroup.Item>
+                      <ListGroup.Item className="list-group-item-secondary">
+                        Piattaforma: {videogioco.piattaforma}
+                      </ListGroup.Item>
+                      <ListGroup.Item className="list-group-item-secondary">
+                        Genere: {videogioco.genere}
+                      </ListGroup.Item>
+                    </ListGroup>
+                    <div className="d-flex mt-3 gap-3 justify-content-center">
+                      <Button
+                        variant="primary"
+                        onClick={() => {
+                          getId(videogioco.id);
+                          handleShowPatch();
+                        }}
+                      >
+                        Aggiungi box art
+                      </Button>
+                      <Button
+                        variant="warning"
+                        onClick={() => {
+                          getId(videogioco.id);
+                          handleShowPut();
+                        }}
+                      >
+                        Modifica
+                      </Button>
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          getId(videogioco.id);
+                          handleShowDelete();
+                        }}
+                      >
+                        Elimina titolo
+                      </Button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))
         ) : (
           <Card style={{ width: "18rem" }} bg="dark" text="white">
             <Card.Img variant="top" src="https://placehold.co/400" />

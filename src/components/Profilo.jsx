@@ -1,9 +1,26 @@
 import { useEffect, useState } from "react";
-import { Card, Col, ListGroup, Placeholder, Row } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Card,
+  Col,
+  ListGroup,
+  Modal,
+  Placeholder,
+  Row,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Profilo = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleClose2 = () => setShow2(false);
+  const handleShow = () => setShow(true);
+  const handleShow2 = () => setShow2(true);
 
   const fetchData = async () => {
     try {
@@ -22,10 +39,40 @@ const Profilo = () => {
       }
 
       const responseData = await response.json();
+
       setData(responseData);
+      if (responseData.ruolo === "ADMIN") {
+        setIsAdmin(true);
+      }
     } catch (error) {
       setError(error.message);
     }
+  };
+
+  const removeGame = async () => {
+    try {
+      const url = `http://localhost:3001/utenti/me/removeGame/${localStorage.getItem(
+        "videogiocoId"
+      )}`;
+      const token = localStorage.getItem("authToken");
+      const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        handleShow2();
+        fetchData();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getId = (id) => {
+    localStorage.setItem("videogiocoId", id);
   };
 
   useEffect(() => {
@@ -34,7 +81,37 @@ const Profilo = () => {
 
   return (
     <>
+      <Modal show={show} onHide={handleClose} backdrop="static">
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Vuoi rimuovere questo titolo dalla tua collezione?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button
+            variant="success"
+            onClick={() => {
+              handleClose();
+              removeGame();
+            }}
+          >
+            Conferma
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={show2} onHide={handleClose2} backdrop="static">
+        <Modal.Header closeButton>
+          <Modal.Title>Titolo rimosso!</Modal.Title>
+        </Modal.Header>
+      </Modal>
+
       <h1 className="text-white text-center my-3">Profilo</h1>
+      {isAdmin && (
+        <Link to="/admin">
+          <Button variant="info">Gestione catalogo</Button>
+        </Link>
+      )}
 
       <Row className="d-flex justify-content-center">
         {data ? (
@@ -68,6 +145,9 @@ const Profilo = () => {
             <h1 className="mb-5 text-white text-center">
               Collezione di {data.username}
             </h1>
+            {data.videogioco.length === 0 && (
+              <Alert variant="info">La tua collezione è vuota</Alert>
+            )}
             {data.videogioco &&
               data.videogioco.map((videogioco) => (
                 <Card
@@ -102,6 +182,17 @@ const Profilo = () => {
                       </ListGroup.Item>
                     </ListGroup>
                   </Card.Body>
+                  <Card.Footer className="d-flex justify-content-center">
+                    <Button
+                      variant="danger"
+                      onClick={() => {
+                        getId(videogioco.id);
+                        handleShow();
+                      }}
+                    >
+                      Rimuovi dalla collezione
+                    </Button>
+                  </Card.Footer>
                 </Card>
               ))}
           </Col>

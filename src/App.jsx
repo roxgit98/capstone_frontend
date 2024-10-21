@@ -7,7 +7,6 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Admin from "./components/Admin";
-import User from "./components/User";
 import Catalogo from "./components/Catalogo";
 import Profilo from "./components/Profilo";
 
