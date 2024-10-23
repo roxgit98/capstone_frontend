@@ -1,13 +1,15 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import logo from "../assets/logo.svg";
+import logo from "../assets/Steam_icon_logo.svg";
 import { Link } from "react-router-dom";
 
 const MyNavbar = () => {
   return (
     <Navbar className="bg-secondary">
       <Container fluid>
-        <Navbar.Brand href="/">
-          <img src={logo} alt="logo" width={70} />
+        <Navbar.Brand>
+          <Link to="/">
+            <img src={logo} alt="logo" width={60} />
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">

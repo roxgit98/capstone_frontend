@@ -275,6 +275,21 @@ const Admin = () => {
                 />
               </FloatingLabel>
             </Col>
+            <Col xl={12}>
+              <FloatingLabel
+                controlId="totaleOreDiGioco"
+                label="Tempo richiesto per la conclusione"
+              >
+                <Form.Control
+                  type="text"
+                  name="totaleOreDiGioco"
+                  placeholder="Genere"
+                  value={formData.totaleOreDiGioco}
+                  onChange={handleChange}
+                  required
+                />
+              </FloatingLabel>
+            </Col>
           </Row>
           <Modal.Footer>
             <Button
@@ -404,6 +419,21 @@ const Admin = () => {
                 />
               </FloatingLabel>
             </Col>
+            <Col xl={12}>
+              <FloatingLabel
+                controlId="totaleOreDiGioco"
+                label="Tempo richiesto per la conclusione"
+              >
+                <Form.Control
+                  type="text"
+                  name="totaleOreDiGioco"
+                  placeholder="Genere"
+                  value={formData.totaleOreDiGioco}
+                  onChange={handleChange}
+                  required
+                />
+              </FloatingLabel>
+            </Col>
           </Row>
           <Modal.Footer>
             <Button
@@ -464,33 +494,33 @@ const Admin = () => {
             )
             .map((videogioco) => (
               <Col key={videogioco.id} sm={6} className="mb-5">
-                <Card
-                  bg="dark"
-                  text="white"
-                  style={{ width: "35rem" }}
-                  border="light"
-                >
+                <Card text="white" style={{ width: "35rem" }}>
                   <Card.Img
                     variant="top"
                     src={videogioco.boxArt}
-                    className="img-fluid"
+                    width={650}
+                    height={650}
                   />
                   <Card.Body>
                     <Card.Title className="text-center">
                       {videogioco.titolo}
                     </Card.Title>
                     <ListGroup className="list-group-flush">
-                      <ListGroup.Item className="list-group-item-secondary">
+                      <ListGroup.Item>
                         Descrizione: {videogioco.descrizione}
                       </ListGroup.Item>
-                      <ListGroup.Item className="list-group-item-secondary">
+                      <ListGroup.Item>
                         Anno di pubblicazione: {videogioco.annoDiPubblicazione}
                       </ListGroup.Item>
-                      <ListGroup.Item className="list-group-item-secondary">
+                      <ListGroup.Item>
                         Piattaforma: {videogioco.piattaforma}
                       </ListGroup.Item>
-                      <ListGroup.Item className="list-group-item-secondary">
+                      <ListGroup.Item>
                         Genere: {videogioco.genere}
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        Totale ore richieste per la conclusione:{" "}
+                        {videogioco.totaleOreDiGioco} ore
                       </ListGroup.Item>
                     </ListGroup>
                     <div className="d-flex mt-3 gap-3 justify-content-center">

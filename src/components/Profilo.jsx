@@ -116,28 +116,16 @@ const Profilo = () => {
       <Row className="d-flex justify-content-center">
         {data ? (
           <Col key={data.id} sm={6} className="mb-5">
-            <Card
-              bg="dark"
-              text="white"
-              style={{ width: "35rem" }}
-              border="light"
-              className="mb-5"
-            >
+            <Card text="white" style={{ width: "35rem" }} className="mb-5">
               <Card.Img variant="top" src={data.avatar} className="img-fluid" />
               <Card.Body>
                 <Card.Title className="text-center">
                   Username: {data.username}
                 </Card.Title>
                 <ListGroup className="list-group-flush">
-                  <ListGroup.Item className="list-group-item-secondary">
-                    Email: {data.email}
-                  </ListGroup.Item>
-                  <ListGroup.Item className="list-group-item-secondary">
-                    Nome: {data.nome}
-                  </ListGroup.Item>
-                  <ListGroup.Item className="list-group-item-secondary">
-                    Cognome: {data.cognome}
-                  </ListGroup.Item>
+                  <ListGroup.Item>Email: {data.email}</ListGroup.Item>
+                  <ListGroup.Item>Nome: {data.nome}</ListGroup.Item>
+                  <ListGroup.Item>Cognome: {data.cognome}</ListGroup.Item>
                 </ListGroup>
               </Card.Body>
             </Card>
@@ -151,10 +139,8 @@ const Profilo = () => {
             {data.videogioco &&
               data.videogioco.map((videogioco) => (
                 <Card
-                  bg="dark"
                   text="white"
                   style={{ width: "35rem" }}
-                  border="light"
                   className="mb-5"
                   key={videogioco.id}
                 >
@@ -168,16 +154,16 @@ const Profilo = () => {
                       {videogioco.titolo}
                     </Card.Title>
                     <ListGroup className="list-group-flush">
-                      <ListGroup.Item className="list-group-item-secondary">
+                      <ListGroup.Item>
                         Descrizione: {videogioco.descrizione}
                       </ListGroup.Item>
-                      <ListGroup.Item className="list-group-item-secondary">
+                      <ListGroup.Item>
                         Anno di pubblicazione: {videogioco.annoDiPubblicazione}
                       </ListGroup.Item>
-                      <ListGroup.Item className="list-group-item-secondary">
+                      <ListGroup.Item>
                         Piattaforma: {videogioco.piattaforma}
                       </ListGroup.Item>
-                      <ListGroup.Item className="list-group-item-secondary">
+                      <ListGroup.Item>
                         Genere: {videogioco.genere}
                       </ListGroup.Item>
                     </ListGroup>
