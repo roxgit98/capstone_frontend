@@ -2,13 +2,14 @@ import { useState } from "react";
 import {
   Alert,
   Button,
+  Card,
   Col,
-  Container,
   FloatingLabel,
   Form,
   Modal,
   Row,
 } from "react-bootstrap";
+import { ArrowLeft } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -67,82 +68,93 @@ const Register = () => {
           </Link>
         </Modal.Footer>
       </Modal>
-      <Container>
-        <h1 className="text-white text-center mt-2">Registrazione</h1>
-        <Form onSubmit={submit}>
-          <Row className="g-5 mt-5">
-            <Col xl={6}>
-              <FloatingLabel controlId="username" label="username">
-                <Form.Control
-                  type="text"
-                  name="username"
-                  placeholder="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  required
-                  minLength="3"
-                  maxLength="30"
-                />
-              </FloatingLabel>
-            </Col>
-            <Col xl={6}>
-              <FloatingLabel controlId="email" label="email">
-                <Form.Control
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </FloatingLabel>
-            </Col>
-            <Col xl={6}>
-              <FloatingLabel controlId="password" label="password">
-                <Form.Control
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  minLength="8"
-                />
-              </FloatingLabel>
-            </Col>
-            <Col xl={6}>
-              <FloatingLabel controlId="nome" label="nome">
-                <Form.Control
-                  type="text"
-                  name="nome"
-                  placeholder="nome"
-                  value={formData.nome}
-                  onChange={handleChange}
-                  required
-                  maxLength="10"
-                />
-              </FloatingLabel>
-            </Col>
-            <Col xl={6}>
-              <FloatingLabel controlId="cognome" label="cognome">
-                <Form.Control
-                  type="text"
-                  name="cognome"
-                  placeholder="cognome"
-                  value={formData.cognome}
-                  onChange={handleChange}
-                  required
-                  maxLength="20"
-                />
-              </FloatingLabel>
-            </Col>
-            {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-          </Row>
-          <Button variant="primary" type="submit" className="mt-5">
-            Conferma
-          </Button>
-        </Form>
-      </Container>
+      <div className="d-flex justify-content-center mt-3">
+        <Card style={{ width: "35rem" }} text="white">
+          <Card.Body>
+            <Link to="/">
+              <ArrowLeft size={30} color="white" />
+            </Link>
+            <Card.Title className="text-center fs-1 mb-3">
+              Registrazione
+            </Card.Title>
+            <Form onSubmit={submit}>
+              <Row className="g-3 d-flex flex-column">
+                <Col sm={12}>
+                  <FloatingLabel controlId="username" label="Username">
+                    <Form.Control
+                      type="text"
+                      name="username"
+                      placeholder="Username"
+                      value={formData.username}
+                      onChange={handleChange}
+                      required
+                      minLength="3"
+                      maxLength="30"
+                    />
+                  </FloatingLabel>
+                </Col>
+                <Col sm={12}>
+                  <FloatingLabel controlId="email" label="Email">
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FloatingLabel>
+                </Col>
+                <Col sm={12}>
+                  <FloatingLabel controlId="password" label="Password">
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                      minLength="8"
+                    />
+                  </FloatingLabel>
+                </Col>
+                <Col sm={12}>
+                  <FloatingLabel controlId="nome" label="Nome">
+                    <Form.Control
+                      type="text"
+                      name="nome"
+                      placeholder="Nome"
+                      value={formData.nome}
+                      onChange={handleChange}
+                      required
+                      maxLength="10"
+                    />
+                  </FloatingLabel>
+                </Col>
+                <Col sm={12}>
+                  <FloatingLabel controlId="cognome" label="Cognome">
+                    <Form.Control
+                      type="text"
+                      name="cognome"
+                      placeholder="Cognome"
+                      value={formData.cognome}
+                      onChange={handleChange}
+                      required
+                      maxLength="20"
+                    />
+                  </FloatingLabel>
+                </Col>
+                {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+              </Row>
+              <Card.Footer className="d-flex justify-content-center mt-3">
+                <Button variant="primary" type="submit">
+                  Conferma
+                </Button>
+              </Card.Footer>
+            </Form>
+          </Card.Body>
+        </Card>
+      </div>
     </>
   );
 };

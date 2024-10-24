@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   Col,
+  Container,
   FloatingLabel,
   Form,
   ListGroup,
@@ -308,7 +309,7 @@ const Admin = () => {
 
       <Modal show={showPatch} onHide={handleClosePatch} backdrop="static">
         <Modal.Header closeButton>
-          <Modal.Title>Inserisci box art</Modal.Title>
+          <Modal.Title>Scegli una box art</Modal.Title>
         </Modal.Header>
         <Form>
           <Form.Control
@@ -322,7 +323,6 @@ const Admin = () => {
             <Button
               variant="success"
               type="button"
-              className="m-3"
               onClick={(e) => {
                 e.preventDefault();
                 handleClosePatch();
@@ -471,8 +471,7 @@ const Admin = () => {
 
       {/* inizio pagina catalogo */}
 
-      <h1 className="text-white text-center my-3">Gestione catalogo</h1>
-      <div className="d-flex justify-content-center gap-3 mb-4">
+      <div className="d-flex justify-content-center gap-3 my-4">
         <Button variant="primary" onClick={handleShow} className="mb-3">
           Aggiungi titolo
         </Button>
@@ -486,50 +485,62 @@ const Admin = () => {
           />
         </FloatingLabel>
       </div>
-      <Row>
-        {data && data.length > 0 ? (
-          data
-            .filter((videogioco) =>
-              videogioco.titolo.toLowerCase().includes(search.toLowerCase())
-            )
-            .map((videogioco) => (
-              <Col key={videogioco.id} sm={6} className="mb-5">
-                <Card text="white" style={{ width: "35rem" }}>
-                  <Card.Img
-                    variant="top"
-                    src={videogioco.boxArt}
-                    width={650}
-                    height={650}
-                  />
-                  <Card.Body>
-                    <Card.Title className="text-center">
-                      {videogioco.titolo}
-                    </Card.Title>
-                    <ListGroup className="list-group-flush">
-                      <ListGroup.Item>
-                        Descrizione: {videogioco.descrizione}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Anno di pubblicazione: {videogioco.annoDiPubblicazione}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Piattaforma: {videogioco.piattaforma}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Genere: {videogioco.genere}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Totale ore richieste per la conclusione:{" "}
-                        {videogioco.totaleOreDiGioco} ore
-                      </ListGroup.Item>
-                    </ListGroup>
-                    <div className="d-flex mt-3 gap-3 justify-content-center">
+      <Container fluid="md">
+        <Row className="d-flex justify-content-center gy-3">
+          {data && data.length > 0 ? (
+            data
+              .filter((videogioco) =>
+                videogioco.titolo.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((videogioco) => (
+                <Col
+                  key={videogioco.id}
+                  xs={12}
+                  sm={7}
+                  md={7}
+                  lg={5}
+                  xl={5}
+                  xxl={4}
+                >
+                  <Card text="white" style={{ width: "24rem" }}>
+                    <Card.Img
+                      variant="top"
+                      src={videogioco.boxArt}
+                      width={490}
+                      height={490}
+                    />
+                    <Card.Body>
+                      <Card.Title className="text-center">
+                        {videogioco.titolo}
+                      </Card.Title>
+                      <ListGroup className="list-group-flush">
+                        <ListGroup.Item>
+                          Sviluppatori: {videogioco.descrizione}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          Anno di pubblicazione:{" "}
+                          {videogioco.annoDiPubblicazione}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          Piattaforma: {videogioco.piattaforma}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          Genere: {videogioco.genere}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          Totale ore richieste per la conclusione:{" "}
+                          {videogioco.totaleOreDiGioco} ore
+                        </ListGroup.Item>
+                      </ListGroup>
+                    </Card.Body>
+                    <Card.Footer className="d-flex justify-content-center gap-3">
                       <Button
                         variant="primary"
                         onClick={() => {
                           getId(videogioco.id);
                           handleShowPatch();
                         }}
+                        size="sm"
                       >
                         Aggiungi box art
                       </Button>
@@ -539,6 +550,7 @@ const Admin = () => {
                           getId(videogioco.id);
                           handleShowPut();
                         }}
+                        size="sm"
                       >
                         Modifica
                       </Button>
@@ -548,31 +560,32 @@ const Admin = () => {
                           getId(videogioco.id);
                           handleShowDelete();
                         }}
+                        size="sm"
                       >
                         Elimina titolo
                       </Button>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))
-        ) : (
-          <Card style={{ width: "18rem" }} bg="dark" text="white">
-            <Card.Img variant="top" src="https://placehold.co/400" />
-            <Card.Body>
-              <Placeholder as={Card.Title} animation="glow">
-                <Placeholder xs={6} />
-              </Placeholder>
-              <Placeholder as={Card.Text} animation="glow">
-                <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                <Placeholder xs={8} />
-              </Placeholder>
-              <Placeholder.Button variant="primary" xs={6} />
-            </Card.Body>
-          </Card>
-        )}
-      </Row>
+                    </Card.Footer>
+                  </Card>
+                </Col>
+              ))
+          ) : (
+            <Card style={{ width: "18rem" }} bg="dark" text="white">
+              <Card.Img variant="top" src="https://placehold.co/400" />
+              <Card.Body>
+                <Placeholder as={Card.Title} animation="glow">
+                  <Placeholder xs={6} />
+                </Placeholder>
+                <Placeholder as={Card.Text} animation="glow">
+                  <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
+                  <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
+                  <Placeholder xs={8} />
+                </Placeholder>
+                <Placeholder.Button variant="primary" xs={6} />
+              </Card.Body>
+            </Card>
+          )}
+        </Row>
+      </Container>
     </>
   );
 };

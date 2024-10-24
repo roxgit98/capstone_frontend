@@ -1,5 +1,6 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../assets/dist/css/style.min.css";
+import "./App.css";
 import MyNavbar from "./components/MyNavbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -15,7 +16,7 @@ function App() {
     <>
       <BrowserRouter>
         <MyNavbar />
-        <Container>
+        <Container fluid>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />

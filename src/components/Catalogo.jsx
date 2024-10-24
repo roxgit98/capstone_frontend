@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   Col,
+  Container,
   FloatingLabel,
   Form,
   ListGroup,
@@ -114,8 +115,7 @@ const Catalogo = () => {
         </Modal.Header>
       </Modal>
 
-      <h1 className="text-white text-center my-3">Catalogo</h1>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center mt-3">
         <FloatingLabel
           controlId="search"
           label="Cerca titolo..."
@@ -130,76 +130,86 @@ const Catalogo = () => {
           />
         </FloatingLabel>
       </div>
-
-      <Row>
-        {data && data.length > 0 ? (
-          data
-            .filter((videogioco) =>
-              videogioco.titolo.toLowerCase().includes(search.toLowerCase())
-            )
-            .map((videogioco) => (
-              <Col key={videogioco.id} sm={6} className="mb-5">
-                <Card text="white" style={{ width: "35rem" }}>
-                  <Card.Img
-                    variant="top"
-                    src={videogioco.boxArt}
-                    width={650}
-                    height={650}
-                  />
-                  <Card.Body>
-                    <Card.Title className="text-center">
-                      {videogioco.titolo}
-                    </Card.Title>
-                    <ListGroup className="list-group-flush">
-                      <ListGroup.Item>
-                        Descrizione: {videogioco.descrizione}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Anno di pubblicazione: {videogioco.annoDiPubblicazione}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Piattaforma: {videogioco.piattaforma}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Genere: {videogioco.genere}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Totale ore richieste per la conclusione:{" "}
-                        {videogioco.totaleOreDiGioco} ore
-                      </ListGroup.Item>
-                    </ListGroup>
-                  </Card.Body>
-                  <Card.Footer className="d-flex justify-content-center">
-                    <Button
-                      variant="success"
-                      onClick={() => {
-                        getId(videogioco.id);
-                        handleShow();
-                      }}
-                    >
-                      Aggiungi alla collezione
-                    </Button>
-                  </Card.Footer>
-                </Card>
-              </Col>
-            ))
-        ) : (
-          <Card style={{ width: "18rem" }} bg="dark" text="white">
-            <Card.Img variant="top" src="https://placehold.co/400" />
-            <Card.Body>
-              <Placeholder as={Card.Title} animation="glow">
-                <Placeholder xs={6} />
-              </Placeholder>
-              <Placeholder as={Card.Text} animation="glow">
-                <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                <Placeholder xs={8} />
-              </Placeholder>
-              <Placeholder.Button variant="primary" xs={6} />
-            </Card.Body>
-          </Card>
-        )}
-      </Row>
+      <Container fluid="md">
+        <Row className="d-flex justify-content-center gy-3">
+          {data && data.length > 0 ? (
+            data
+              .filter((videogioco) =>
+                videogioco.titolo.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((videogioco) => (
+                <Col
+                  key={videogioco.id}
+                  xs={12}
+                  sm={7}
+                  md={7}
+                  lg={5}
+                  xl={5}
+                  xxl={4}
+                >
+                  <Card text="white" style={{ width: "24rem" }}>
+                    <Card.Img
+                      variant="top"
+                      src={videogioco.boxArt}
+                      width={490}
+                      height={490}
+                    />
+                    <Card.Body>
+                      <Card.Title className="text-center">
+                        {videogioco.titolo}
+                      </Card.Title>
+                      <ListGroup className="list-group-flush">
+                        <ListGroup.Item>
+                          Sviluppatori: {videogioco.descrizione}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          Anno di pubblicazione:{" "}
+                          {videogioco.annoDiPubblicazione}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          Piattaforma: {videogioco.piattaforma}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          Genere: {videogioco.genere}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          Totale ore richieste per la conclusione:{" "}
+                          {videogioco.totaleOreDiGioco} ore
+                        </ListGroup.Item>
+                      </ListGroup>
+                    </Card.Body>
+                    <Card.Footer className="d-flex justify-content-center">
+                      <Button
+                        variant="success"
+                        onClick={() => {
+                          getId(videogioco.id);
+                          handleShow();
+                        }}
+                      >
+                        Aggiungi alla collezione
+                      </Button>
+                    </Card.Footer>
+                  </Card>
+                </Col>
+              ))
+          ) : (
+            <Card style={{ width: "18rem" }} bg="dark" text="white">
+              <Card.Img variant="top" src="https://placehold.co/400" />
+              <Card.Body>
+                <Placeholder as={Card.Title} animation="glow">
+                  <Placeholder xs={6} />
+                </Placeholder>
+                <Placeholder as={Card.Text} animation="glow">
+                  <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
+                  <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
+                  <Placeholder xs={8} />
+                </Placeholder>
+                <Placeholder.Button variant="primary" xs={6} />
+              </Card.Body>
+            </Card>
+          )}
+        </Row>
+      </Container>
     </>
   );
 };

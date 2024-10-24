@@ -2,13 +2,14 @@ import { useState } from "react";
 import {
   Alert,
   Button,
+  Card,
   Col,
-  Container,
   FloatingLabel,
   Form,
   Row,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-bootstrap-icons";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -30,10 +31,6 @@ const Login = () => {
           body: JSON.stringify({ email, password }),
         }
       );
-
-      if (!response.ok) {
-        throw new Error("Tentativo di login fallito");
-      }
 
       const data = await response.json();
 
@@ -58,42 +55,53 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <h1 className="text-white text-center mt-2">Accesso</h1>
-      <Form onSubmit={submit}>
-        <Row className="g-5 mt-5">
-          <Col xl={6}>
-            <FloatingLabel controlId="email" label="email">
-              <Form.Control
-                type="email"
-                name="email"
-                placeholder="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </FloatingLabel>
-          </Col>
-          <Col xl={6}>
-            <FloatingLabel controlId="password" label="password">
-              <Form.Control
-                type="password"
-                name="password"
-                placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                minLength="8"
-              />
-            </FloatingLabel>
-          </Col>
-          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-        </Row>
-        <Button variant="primary" type="submit" className="mt-5">
-          Accedi
-        </Button>
-      </Form>
-    </Container>
+    <>
+      <div className="d-flex justify-content-center mt-3">
+        <Card style={{ width: "35rem" }} text="white">
+          <Card.Body>
+            <Link to="/">
+              <ArrowLeft size={30} color="white" />
+            </Link>
+            <Card.Title className="text-center fs-1 mb-3">Accedi</Card.Title>
+            <Form onSubmit={submit}>
+              <Row className="g-3 d-flex flex-column">
+                <Col sm={12}>
+                  <FloatingLabel controlId="email" label="Email">
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </FloatingLabel>
+                </Col>
+                <Col sm={12}>
+                  <FloatingLabel controlId="password" label="Password">
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      minLength="8"
+                    />
+                  </FloatingLabel>
+                </Col>
+                {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+              </Row>
+              <Card.Footer className="d-flex justify-content-center mt-3">
+                <Button variant="primary" type="submit">
+                  Accedi
+                </Button>
+              </Card.Footer>
+            </Form>
+          </Card.Body>
+        </Card>
+      </div>
+    </>
   );
 };
 

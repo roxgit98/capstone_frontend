@@ -1,6 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import logo from "../assets/Steam_icon_logo.svg";
+import logo from "../images/Steam_icon_logo.svg";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const MyNavbar = () => {
   return (
