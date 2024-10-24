@@ -225,11 +225,11 @@ const Admin = () => {
               </FloatingLabel>
             </Col>
             <Col xl={12}>
-              <FloatingLabel controlId="descrizione" label="Descrizione">
+              <FloatingLabel controlId="descrizione" label="Sviluppatori">
                 <Form.Control
                   type="text"
                   name="descrizione"
-                  placeholder="Descrizione"
+                  placeholder="Sviluppatori"
                   value={formData.descrizione}
                   onChange={handleChange}
                 />
@@ -282,12 +282,13 @@ const Admin = () => {
                 label="Tempo richiesto per la conclusione"
               >
                 <Form.Control
-                  type="text"
+                  type="number"
                   name="totaleOreDiGioco"
-                  placeholder="Genere"
+                  placeholder="Tempo richiesto per la conclusione"
                   value={formData.totaleOreDiGioco}
                   onChange={handleChange}
                   required
+                  min="0"
                 />
               </FloatingLabel>
             </Col>
@@ -368,11 +369,11 @@ const Admin = () => {
               </FloatingLabel>
             </Col>
             <Col xl={12}>
-              <FloatingLabel controlId="descrizione" label="Descrizione">
+              <FloatingLabel controlId="descrizione" label="Sviluppatori">
                 <Form.Control
                   type="text"
                   name="descrizione"
-                  placeholder="Descrizione"
+                  placeholder="Sviluppatori"
                   value={formData.descrizione}
                   onChange={handleChange}
                 />
@@ -425,12 +426,13 @@ const Admin = () => {
                 label="Tempo richiesto per la conclusione"
               >
                 <Form.Control
-                  type="text"
+                  type="number"
                   name="totaleOreDiGioco"
-                  placeholder="Genere"
+                  placeholder="Tempo richiesto per la conclusione"
                   value={formData.totaleOreDiGioco}
                   onChange={handleChange}
                   required
+                  min="0"
                 />
               </FloatingLabel>
             </Col>
