@@ -214,7 +214,7 @@ const Profilo = () => {
                 </Card>
               </Col>
 
-              <h1 className="mb-5 text-center">
+              <h1 className="mb-5 text-center text-primary">
                 Collezione di {data.username}
               </h1>
               {data.videogioco.length === 0 && (
