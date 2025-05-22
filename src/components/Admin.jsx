@@ -56,7 +56,8 @@ const Admin = () => {
 
   const fetchData = async () => {
     try {
-      const url = "http://localhost:3001/videogiochi/orderAZ";
+      const url =
+        "optimistic-dorris-roxgit98-b4431215.koyeb.app/videogiochi/orderAZ";
       const token = localStorage.getItem("authToken");
       const response = await fetch(url, {
         method: "GET",
@@ -82,7 +83,7 @@ const Admin = () => {
   const postData = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:3001/videogiochi";
+      const url = "optimistic-dorris-roxgit98-b4431215.koyeb.app/videogiochi";
       const token = localStorage.getItem("authToken");
       const response = await fetch(url, {
         method: "POST",
@@ -109,7 +110,7 @@ const Admin = () => {
 
   const patchData = async (file) => {
     try {
-      const url = `http://localhost:3001/videogiochi/${localStorage.getItem(
+      const url = `optimistic-dorris-roxgit98-b4431215.koyeb.app/videogiochi/${localStorage.getItem(
         "videogiocoId"
       )}/boxArt`;
       const token = localStorage.getItem("authToken");
@@ -140,7 +141,7 @@ const Admin = () => {
 
   const putData = async (updatedData) => {
     try {
-      const url = `http://localhost:3001/videogiochi/${localStorage.getItem(
+      const url = `optimistic-dorris-roxgit98-b4431215.koyeb.app/videogiochi/${localStorage.getItem(
         "videogiocoId"
       )}`;
       const token = localStorage.getItem("authToken");
@@ -169,7 +170,7 @@ const Admin = () => {
 
   const deleteData = async (id) => {
     try {
-      const url = `http://localhost:3001/videogiochi/${localStorage.getItem(
+      const url = `optimistic-dorris-roxgit98-b4431215.koyeb.app/videogiochi/${localStorage.getItem(
         "videogiocoId"
       )}`;
       const token = localStorage.getItem("authToken");

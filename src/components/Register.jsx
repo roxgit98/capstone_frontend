@@ -35,7 +35,7 @@ const Register = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3001/authorization/register",
+        "optimistic-dorris-roxgit98-b4431215.koyeb.app/authorization/register",
         {
           method: "POST",
           headers: {
