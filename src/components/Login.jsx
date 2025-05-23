@@ -22,7 +22,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "http://optimistic-dorris-roxgit98-b4431215.koyeb.app/authorization/login",
+        "https://optimistic-dorris-roxgit98-b4431215.koyeb.app/authorization/login",
         {
           method: "POST",
           headers: {
