@@ -29,7 +29,7 @@ const Catalogo = () => {
   const fetchData = async () => {
     try {
       const url =
-        "optimistic-dorris-roxgit98-b4431215.koyeb.app/videogiochi/orderAZ";
+        "https://optimistic-dorris-roxgit98-b4431215.koyeb.app/videogiochi/orderAZ";
       const token = localStorage.getItem("authToken");
       const response = await fetch(url, {
         method: "GET",
@@ -52,7 +52,7 @@ const Catalogo = () => {
 
   const addGame = async () => {
     try {
-      const url = `optimistic-dorris-roxgit98-b4431215.koyeb.app/utenti/me/addGame/${localStorage.getItem(
+      const url = `https://optimistic-dorris-roxgit98-b4431215.koyeb.app/utenti/me/addGame/${localStorage.getItem(
         "videogiocoId"
       )}`;
       const token = localStorage.getItem("authToken");

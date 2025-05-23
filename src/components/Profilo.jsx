@@ -33,7 +33,8 @@ const Profilo = () => {
 
   const fetchData = async () => {
     try {
-      const url = "optimistic-dorris-roxgit98-b4431215.koyeb.app/utenti/me";
+      const url =
+        "https://optimistic-dorris-roxgit98-b4431215.koyeb.app/utenti/me";
       const token = localStorage.getItem("authToken");
       const response = await fetch(url, {
         method: "GET",
@@ -60,7 +61,7 @@ const Profilo = () => {
 
   const removeGame = async () => {
     try {
-      const url = `optimistic-dorris-roxgit98-b4431215.koyeb.app/utenti/me/removeGame/${localStorage.getItem(
+      const url = `https://optimistic-dorris-roxgit98-b4431215.koyeb.app/utenti/me/removeGame/${localStorage.getItem(
         "videogiocoId"
       )}`;
       const token = localStorage.getItem("authToken");
@@ -83,7 +84,7 @@ const Profilo = () => {
   const updateAvatar = async (file) => {
     try {
       const url =
-        "optimistic-dorris-roxgit98-b4431215.koyeb.app/utenti/me/avatar";
+        "https://optimistic-dorris-roxgit98-b4431215.koyeb.app/utenti/me/avatar";
       const token = localStorage.getItem("authToken");
       const formData = new FormData();
       formData.append("file", file);
