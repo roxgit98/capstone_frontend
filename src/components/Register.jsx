@@ -106,7 +106,10 @@ const Register = () => {
                   </FloatingLabel>
                 </Col>
                 <Col sm={12}>
-                  <FloatingLabel controlId="password" label="Password">
+                  <FloatingLabel
+                    controlId="password"
+                    label="Password (minimo 8 caratteri)"
+                  >
                     <Form.Control
                       type="password"
                       name="password"

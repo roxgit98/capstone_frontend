@@ -151,7 +151,7 @@ const Profilo = () => {
 
       <Modal show={show3} onHide={handleClose3} backdrop="static">
         <Modal.Header closeButton>
-          <Modal.Title>Scegli un'immagine</Modal.Title>
+          <Modal.Title>Scegli un'immagine (massimo 1MB)</Modal.Title>
         </Modal.Header>
         <Form>
           <Form.Control
